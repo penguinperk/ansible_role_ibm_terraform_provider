@@ -1,3 +1,5 @@
+[![CI](https://github.com/penguinperk/ansible_role_IBMTerrformProvider/actions/workflows/ci.yml/badge.svg)](https://github.com/penguinperk/ansible_role_IBMTerrformProvider/actions/workflows/ci.yml)
+
 Role Name
 =========
 
