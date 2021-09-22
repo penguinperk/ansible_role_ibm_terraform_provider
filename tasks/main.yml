@@ -1,0 +1,42 @@
+---
+#- hosts: all
+
+#
+#code:
+#Download IBM Terraform Provider
+#
+#Create Directory ~/.IBM_terraform
+#
+#Unzip and extract file to ~/.IBM_terraform
+#  If verify checksum is the same
+#/*
+
+- name: Install unzip
+  ansible.builtin.package:
+    name: unzip
+    state: present
+
+- name: Create Terrafrom Plugin directory
+  file:
+    path: ~/.terraform/plugins
+    state: directory
+    mode: 755
+
+- name: Create Provider directory
+  file:
+    path: "{{ Provider_path }}"
+    state: directory
+    mode: 755
+
+- name: Download of Linux
+  include_tasks: 
+    file: Linux_Provider.yml
+  when: ansible_os_family == "RedHat" or 
+        ansible_os_family == "Amazon" or 
+        ansible_os_family == "Debian" 
+
+- name: Download of MacOS
+  include_tasks: 
+    file: MacOS_Provider.yml
+  when: ansible_os_family == "Darwin"
+

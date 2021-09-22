@@ -1,0 +1,8 @@
+---
+IBM_Provider_version: 1.31.0
+Provider_path: ~/.IBM_terraform
+terraformPlugin: ~/.terraform/plugins/
+Platform: linux
+Architecture: amd64
+LinuxSHA256SUMS: 7abbb18e9146c97b66eab3ae22c0a06bafc5d4478f102d510900620a8373ad7e
+MacOSSHA256SUMS: e649b44a4f0eb2b1917fae31871a64bbfac7bb27fbaade9dcee0cbb21fc59735
