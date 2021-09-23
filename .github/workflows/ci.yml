@@ -4,9 +4,13 @@ name: CI
   pull_request:
   push:
     branches:
-      - main
+      - master
   schedule:
-    - cron: "0 5 * * 4"
+    - cron: "0 5 * * 0"
+
+defaults:
+  run:
+    working-directory: 'geerlingguy.apache'
 
 jobs:
 
@@ -16,6 +20,8 @@ jobs:
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
+        with:
+          path: 'geerlingguy.apache'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
@@ -23,52 +29,41 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install yamllint ansible ansible-lint
+        run: pip3 install yamllint
 
       - name: Lint code.
         run: |
           yamllint .
-          ansible-lint
 
-  integration:
-    name: Integration
-    runs-on: ${{ matrix.os }}
+  molecule:
+    name: Molecule
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os:
-          - macos-10.15
+        distro:
+          - centos8
+          - centos7
+          - ubuntu2004
+          - debian10
 
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
+        with:
+          path: 'geerlingguy.apache'
 
-
-      - name: Uninstall GitHub Actions' built-in browser installs.
-        run: |
-          sudo rm -rf /Applications/Firefox.app
-          sudo rm -rf /Applications/Google\ Chrome.app
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
 
       - name: Install test dependencies.
-        run: sudo pip3 install ansible
+        run: pip3 install ansible molecule[docker] docker
 
-      - name: Set up the test environment.
-        run: |
-          cp tests/ansible.cfg ./ansible.cfg
-          cp tests/inventory ./inventory
-          cp tests/config.yml ./config.yml
-
-      - name: Test the playbook's syntax.
-        run: ansible-playbook main.yml --syntax-check
-
-      - name: Test the playbook.
-        run: ansible-playbook main.yml
+      - name: Run Molecule tests.
+        run: molecule test
         env:
+          PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
 
-      - name: Idempotence check.
-        run: |
-          idempotence=$(mktemp)
-          ansible-playbook main.yml | tee -a ${idempotence}
-          tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
-        env:
-          ANSIBLE_FORCE_COLOR: '1'
