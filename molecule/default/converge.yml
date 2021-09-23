@@ -4,4 +4,4 @@
   tasks:
     - name: "include ansible_role_ibmterrformprovider"
       include_role:
-        name: "ansible_role_ibmyerrformprovider"
+        name: "penguinperk.ansible_role_ibm_terrform_provider"
