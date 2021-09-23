@@ -28,6 +28,8 @@
     state: directory
     mode: 755
 
+
+
 - name: Download of Linux
   include_tasks: 
     file: Linux_Provider.yml
@@ -39,4 +41,3 @@
   include_tasks: 
     file: MacOS_Provider.yml
   when: ansible_os_family == "Darwin"
-
