@@ -1,18 +1,19 @@
 ---
 - name: Downloading IBM Terraform Provider
   get_url:
-    url: 'https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v{{ IBM_Provider_version }}/terraform-provider-ibm_{{ IBM_Provider_version }}_linux_{{ Architecture }}.zip'
-    dest: "{{ Provider_path }}"
-    checksum: sha256:{{ LinuxSHA256SUMS }}
+    url: 'https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v{{ ibm_provider_version }}/terraform-provider-ibm_{{ ibm_provider_version }}_linux_{{ architecture }}.zip'
+    dest: "{{ provider_path }}"
+    checksum: sha256:{{ linuxsha256sums }}
 
-- name: Extract Terraform provider into {{ Provider_path }} 
+- name: Extract Terraform provider into {{ provider_path }} 
   ansible.builtin.unarchive:
-    src: '{{ Provider_path }}/terraform-provider-ibm_{{ IBM_Provider_version }}_linux_{{ Architecture }}.zip'
-    dest: '{{ Provider_path }}/'
+    src: '{{ provider_path }}/terraform-provider-ibm_{{ ibm_provider_version }}_linux_{{ architecture }}.zip'
+    dest: '{{ provider_path }}/'
     copy: no
 
+#TODO: I think this can be moved to main.yml
 - name: Create Link Terrafrom to Plugin directory
   file:
-    src: '{{ Provider_path }}/terraform-provider-ibm_v{{ IBM_Provider_version }}'
-    dest: '{{ terraformPlugin }}/terraform-provider-ibm_v{{ IBM_Provider_version }}'
+    src: '{{ provider_path }}/terraform-provider-ibm_v{{ ibm_provider_version }}'
+    dest: '{{ terraformplugin }}/terraform-provider-ibm_v{{ ibm_provider_version }}'
     state: link

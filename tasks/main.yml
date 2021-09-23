@@ -20,13 +20,13 @@
   file:
     path: ~/.terraform/plugins
     state: directory
-    mode: 755
+    mode: 0755
 
 - name: Create Provider directory
   file:
-    path: "{{ Provider_path }}"
+    path: "{{ provider_path }}"
     state: directory
-    mode: 755
+    mode: 0755
 
 
 

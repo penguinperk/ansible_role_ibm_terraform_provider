@@ -1,1 +1,19 @@
-MacOS_Provider.yml
+---
+- name: Downloading IBM Terraform Provider
+  get_url:
+    url: 'https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v{{ ibm_provider_version }}/terraform-provider-ibm_{{ ibm_provider_version }}_linux_{{ architecture }}.zip'
+    dest: "{{ provider_path }}"
+    checksum: sha256:{{ macossha256sums }}
+
+- name: Extract Terraform provider into {{ provider_path }} 
+  ansible.builtin.unarchive:
+    src: '{{ provider_path }}/terraform-provider-ibm_{{ ibm_provider_version }}_darwin_{{ architecture }}.zip'
+    dest: '{{ provider_path }}/'
+    copy: no
+
+#TODO: If the Linux one is move this can be deleted
+- name: Create Link Terrafrom to Plugin directory
+  file:
+    src: '{{ provider_path }}/terraform-provider-ibm_v{{ ibm_provider_version }}'
+    dest: '{{ terraformplugin }}/terraform-provider-ibm_v{{ ibm_provider_version }}'
+    state: link
