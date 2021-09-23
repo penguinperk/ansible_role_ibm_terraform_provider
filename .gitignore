@@ -3,3 +3,4 @@
 *.pyc
 .cache
 .travis.yml
+ci.old
