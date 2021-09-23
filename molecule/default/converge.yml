@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "include ansible_role_ibmterrformprovider"
+    - name: "include ansibleroleibmterrformprovider"
       include_role:
-        name: "penguinperk.ansible_role_ibm_terrform_provider"
+        name: "penguinperk.ansibleroleibmterrformprovider"
