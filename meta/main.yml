@@ -1,6 +1,6 @@
 galaxy_info:
-  role_name: ansibleroleibmterrformprovider
-  my_galaxy_namespace: penguinperk
+  #role_name: ansibleroleibmterrformprovider
+  #my_galaxy_namespace: penguinperk
   author: Scott Perkins
   description: Deploys the IBM Cloud Terraform Provider
   company: None
