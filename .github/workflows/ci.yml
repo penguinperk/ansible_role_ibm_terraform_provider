@@ -10,8 +10,7 @@ name: CI
 
 defaults:
   run:
-    working-directory: 'geerlingguy.apache'
-
+    working-directory: 'penguinperk.ansibleroleibmterrformprovider'
 jobs:
 
   lint:
