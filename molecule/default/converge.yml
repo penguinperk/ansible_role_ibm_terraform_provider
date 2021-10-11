@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "include ansibleroleibmterrformprovider"
+    - name: "include ansible_role_ibm_terraform_provider"
       include_role:
-        name: "ansibleroleibmterrformprovider"
+        name: "include ansible_role_ibm_terraform_provider"
