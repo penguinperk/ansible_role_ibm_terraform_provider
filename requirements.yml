@@ -1,2 +1,2 @@
 ---
-- src: penguinperk.ansible_role_ibm_terrform_provider
+- src: penguinperk.ibm_terraform_provider
