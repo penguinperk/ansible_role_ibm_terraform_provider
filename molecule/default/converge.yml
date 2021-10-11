@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "include penguinperk.iibm_terraform_provider"
+    - name: "include penguinperk.ibm_terraform_provider"
       include_role:
         name: "include penguinperk.ibm_terraform_provider"
