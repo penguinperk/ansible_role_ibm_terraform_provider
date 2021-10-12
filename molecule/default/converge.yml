@@ -4,4 +4,5 @@
   tasks:
     - name: "include penguinperk.ibm_terraform_provider"
       include_role:
-        name: "include penguinperk.ibm_terraform_provider"
+        name: "ibm_terraform_provider"
+
