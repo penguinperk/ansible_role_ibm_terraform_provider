@@ -1,2 +1,5 @@
 ---
 - src: penguinperk.ibm_terraform_provider
+- name: git@github.com:penguinperk/ansible_role_ibm_terraform_provider.git
+  version: main
+  type: git
