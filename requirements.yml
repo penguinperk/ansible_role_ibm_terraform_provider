@@ -1,5 +1,4 @@
 ---
-- src: penguinperk.ibm_terraform_provider
-- name: git@github.com:penguinperk/ansible_role_ibm_terraform_provider.git
+- name: Download IBM Terraform Provider
+  src: https://github.com/penguinperk/ansible_role_ibm_terraform_provider.git
   version: main
-  type: git
