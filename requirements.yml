@@ -1,4 +1,0 @@
----
-- name: ibm_terraform_provider
-  src: https://github.com/penguinperk/ansible_role_ibm_terraform_provider.git
-  version: main
