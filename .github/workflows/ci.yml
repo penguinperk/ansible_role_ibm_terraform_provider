@@ -40,9 +40,9 @@ jobs:
     strategy:
       matrix:
         distro:
-          - centos8
           - centos7
-          - ubuntu2004
+          - centos8
+          - ubuntu20
           - debian10
 
     steps:

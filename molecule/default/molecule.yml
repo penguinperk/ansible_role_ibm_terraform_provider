@@ -1,8 +1,8 @@
 driver:
   name: docker
 platforms:
-  - name: instance
-    image: docker.io/pycontribs/centos:8
+  - name: ibm_terraform_provider-test-${MOLECULE_DISTRO:-centos8}
+    image: quay.io/samdoran/${MOLECULE_DISTRIBUTION:-centos8}-ansible
     pre_build_image: true
 provisioner:
   name: ansible
